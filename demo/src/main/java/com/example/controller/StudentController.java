@@ -1,5 +1,6 @@
 package com.example.controller;
 import com.example.model.Student;
+import com.example.models.StudentInputModel;
 import com.example.service.StudentService;
 //import com.sun.org.apache.xpath.internal.operations.String;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,9 @@ public class StudentController {
 
     @PostMapping("/post")
     @ResponseBody
-    public String postStudent(int id){
-        Student student=studentService.queryStudent(id);
+    public String postStudent(@RequestBody StudentInputModel model){
+        int id =  model.getId();
+        Student student=studentService.queryStudent(model.getId());
         return student.toString();
     }
 
